@@ -49,6 +49,7 @@ class Start(commands.Cog):
             self.countdown += self.increment
             await msg.edit(content=self.phrase(self.increment * self.countdown))
             await asyncio.sleep(self.increment * scale)
+        await msg.edit(content="Timer Complete!!")
 
 
 def setup(bot):
