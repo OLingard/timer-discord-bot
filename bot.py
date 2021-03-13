@@ -9,7 +9,7 @@ from errors import TimeTypeError, TimeError
 load_dotenv()
 TOKEN = getenv('DISCORD_TOKEN')
 
-intents = discord.Intents(messages=True)
+intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix=">>", intents=intents)
 
