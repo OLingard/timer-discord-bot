@@ -30,7 +30,7 @@ class Start(commands.Cog):
         except ValueError:
             raise TimeError()
 
-        msg = await ctx.channel.send(self.phrase(0))
+        msg = await ctx.send(self.phrase(0))
         await self.looper(msg)
 
     async def looper(self, msg):
