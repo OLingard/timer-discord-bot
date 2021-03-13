@@ -1,4 +1,4 @@
-from os import getenv
+import os
 
 import discord
 from discord.ext import commands
@@ -36,8 +36,7 @@ async def on_command_error(ctx, error):
         else:
             raise error
 
-with open('token.txt') as f:
-    TOKEN = f.readline()
+TOKEN = os.environ['DISCORD_TOKEN']
 
 if __name__ == '__main__':
     bot.run(TOKEN)
