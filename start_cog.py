@@ -20,7 +20,7 @@ class Start(commands.cog):
         brief="Start a Game Timer",
         help="Starts a game timer for the time specified."
     )
-    async def start(self, ctx):
+    async def start_timer(self, ctx):
         try:
             self.time_type = self.TimeTypes(ctx.message.content[-1])
         except ValueError:
