@@ -15,4 +15,5 @@ bot.load_extension('start.start_cog')
 # bot.load_extension('stop_timer')
 # bot.load_extension('repeat_timer')
 
-bot.run(TOKEN, bot=True, reconnect=True)
+if __name__ == '__main__':
+    bot.run(TOKEN, bot=True, reconnect=True)
