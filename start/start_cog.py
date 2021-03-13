@@ -22,11 +22,11 @@ class Start(commands.Cog):
     )
     async def start(self, ctx):
         try:
-            self.time_type = TimeTypes(ctx.message.content[-1])
+            self.time_type = TimeTypes(ctx.message.content.split()[-1])
         except ValueError:
             raise TimeTypeError()
         try:
-            self.time = int(ctx.message.content[-2])
+            self.time = int(ctx.message.content.split()[-2])
         except ValueError:
             raise TimeError()
 
