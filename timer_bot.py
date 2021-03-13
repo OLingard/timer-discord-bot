@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from errors import TimeTypeError, TimeError
 
 load_dotenv()
-TOKEN = getenv('DISCORD_TOKEN')
 
 intents = discord.Intents.all()
 
@@ -36,6 +35,9 @@ async def on_command_error(ctx, error):
             await ctx.author.dm_channel.send(error.original)
         else:
             raise error
+
+with open('token.txt') as f:
+    TOKEN = f.readline()
 
 if __name__ == '__main__':
     bot.run(TOKEN)
