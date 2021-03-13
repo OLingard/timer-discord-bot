@@ -1,3 +1,6 @@
+import asyncio
+
+import discord
 from discord.ext import commands, tasks
 
 from errors import TimeTypeError, TimeError
@@ -35,18 +38,17 @@ class Start(commands.Cog):
 
     def looper(self, msg):
         if self.time_type == TimeTypes.seconds:
-            tasks.Loop(self.countdown_loop(msg), seconds=self.time, minutes=0, hours=0, count=self.time/self.increment,
-                       reconnect=True, loop=None)
+            await self.countdown_loop(msg, 1)
         if self.time_type == TimeTypes.minutes:
-            tasks.Loop(self.countdown_loop(msg), seconds=0, minutes=self.time, hours=0, count=self.time/self.increment,
-                       reconnect=True, loop=None)
+            await self.countdown_loop(msg, 60)
         if self.time_type == TimeTypes.hours:
-            tasks.Loop(self.countdown_loop(msg), seconds=0, minutes=self.time, hours=0, count=self.time/self.increment,
-                       reconnect=True, loop=None)
+            await self.countdown_loop(msg, 3600)
 
-    async def countdown_loop(self, msg):
-        self.countdown += self.increment
-        await msg.edit(self.phrase(self.increment * self.countdown))
+    async def countdown_loop(self, msg: discord.Message, scale):
+        while self.increment * self.countdown < self.time:
+            self.countdown += self.increment
+            await msg.edit(content=self.phrase(self.increment * self.countdown))
+            await asyncio.sleep(self.increment * scale)
 
 
 def setup(bot):
