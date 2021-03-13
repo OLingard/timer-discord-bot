@@ -8,7 +8,7 @@ from errors import TimeTypeError, TimeError
 
 load_dotenv()
 
-intents = discord.Intents.all()
+intents = discord.Intents(messages=True)
 
 bot = commands.Bot(command_prefix=">>", intents=intents)
 
