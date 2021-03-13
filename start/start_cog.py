@@ -18,12 +18,19 @@ class Start(commands.Cog):
     def phrase(self, time_removal):
         return f"Timer has {self.time - time_removal} {self.time_type.name} left"
 
+    def reset(self):
+        self.time = 0
+        self.time_type = TimeTypes.seconds
+        self.increment = 1
+
     @commands.command(
         name="start",
         brief="Start a Game Timer",
         help="Starts a game timer for the time specified."
     )
     async def start(self, ctx):
+        self.countdown = 0
+        self.reset()
         try:
             self.time_type = TimeTypes(ctx.message.content.split()[-1])
         except ValueError:
