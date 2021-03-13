@@ -31,9 +31,9 @@ class Start(commands.Cog):
             raise TimeError()
 
         msg = await ctx.send(self.phrase(0))
-        await self.looper(msg)
+        self.looper(msg)
 
-    async def looper(self, msg):
+    def looper(self, msg):
         if self.time_type == TimeTypes.seconds:
             tasks.Loop(self.countdown_loop(msg), seconds=self.time, minutes=0, hours=0, count=self.time/self.increment,
                        reconnect=True, loop=None)
