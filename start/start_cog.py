@@ -15,7 +15,7 @@ class Start(commands.cog):
     def phrase(self, time_removal):
         return f"Timer has {self.time - time_removal} {self.time_type.name} left"
 
-    @commands.group(
+    @commands.command(
         name="start",
         brief="Start a Game Timer",
         help="Starts a game timer for the time specified."
@@ -44,7 +44,6 @@ class Start(commands.cog):
             tasks.Loop(self.countdown_loop(msg), seconds=0, minutes=self.time, hours=0, count=self.time/self.increment,
                        reconnect=True, loop=None)
 
-    @tasks.loop(count=10)
     async def countdown_loop(self, msg):
         self.countdown += self.increment
         msg.edit(self.phrase(self.increment * self.countdown))
