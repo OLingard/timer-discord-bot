@@ -13,7 +13,7 @@ intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix=">>", intents=intents)
 
-bot.load_extension('start_cog')
+bot.load_extension('start.start_cog')
 # bot.load_extension('stop_timer')
 # bot.load_extension('repeat_timer')
 
@@ -38,4 +38,4 @@ async def on_command_error(ctx, error):
             raise error
 
 if __name__ == '__main__':
-    bot.run(TOKEN, bot=True, reconnect=True)
+    bot.run(TOKEN)
