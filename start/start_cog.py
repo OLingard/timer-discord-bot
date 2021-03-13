@@ -46,7 +46,7 @@ class Start(commands.Cog):
 
     async def countdown_loop(self, msg):
         self.countdown += self.increment
-        msg.edit(self.phrase(self.increment * self.countdown))
+        await msg.edit(self.phrase(self.increment * self.countdown))
 
 
 def setup(bot):
