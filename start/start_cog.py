@@ -4,7 +4,7 @@ from errors import TimeTypeError, TimeError
 from start.time_types import TimeTypes
 
 
-class Start(commands.cog):
+class Start(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.time = 0
@@ -22,7 +22,7 @@ class Start(commands.cog):
     )
     async def start(self, ctx):
         try:
-            self.time_type = self.TimeTypes(ctx.message.content[-1])
+            self.time_type = TimeTypes(ctx.message.content[-1])
         except ValueError:
             raise TimeTypeError()
         try:
